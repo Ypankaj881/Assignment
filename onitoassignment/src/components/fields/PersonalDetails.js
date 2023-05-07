@@ -1,8 +1,6 @@
 import React from "react";
 
 function PersonalDetails(props) {
-  console.log(props);
-  console.log("idtype", props.formState.errors.govtIssuedId);
   return (
     <div className="">
       <h1 className="text-lg font-semibold w-fit border-b-black border-b-2">

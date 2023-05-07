@@ -51,6 +51,7 @@ function Form() {
     handleSubmit,
     watch,
     resetField,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -61,25 +62,32 @@ function Form() {
   };
 
   const handleRefresh = () => {
-    window.location.reload();
+    reset();
   };
 
   const submit = async (data) => {
-    console.log("data", data);
-    const data2 = await axios.post("http://localhost:5000/api/adddata", data);
+    const postResponse = await axios.post(
+      "http://localhost:5000/api/adddata",
+      data
+    );
 
-    if (data2.success) {
-      alert(data2.message);
+    if (postResponse.data.success) {
+      alert(postResponse.data.message);
     }
+    reset();
   };
 
   return (
     <div className="flex justify-center items-center w-[100%] pt-6">
-      {/* <Link to="/users">Go to Table</Link> */}
       <form
         onSubmit={handleSubmit(submit)}
         className="w-[75%] border-2 px-5 py-2 bg-slate-50"
       >
+        <div className=" text-end">
+          <Link className=" underline text-blue-600" to="/users">
+            Show Table
+          </Link>
+        </div>
         <div className="flex flex-col flex-wrap gap-3 text-sm ">
           <PersonalDetails
             {...{

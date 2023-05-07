@@ -62,10 +62,6 @@ function OtherDetails(props) {
             placeholder="Enter Nationality"
           />
         </div>
-
-        <button onClick={() => props.handleResetField("nationality")}>
-          clear
-        </button>
       </div>
     </div>
   );
